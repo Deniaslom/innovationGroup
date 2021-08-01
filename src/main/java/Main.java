@@ -1,9 +1,7 @@
 import beans.Person;
 import beans.Role;
-import interfaces.Validation;
-import services.InputService;
+import services.InputServiceSc;
 import services.PersonService;
-import services.impl.ValidatorImpl;
 import utils.Transformation;
 
 import java.util.List;
@@ -12,7 +10,7 @@ import java.util.Scanner;
 public class Main {
     public static void main(String[] args) {
         PersonService personService = PersonService.getInstance();
-        InputService input = InputService.getInstance();
+        InputServiceSc input = InputServiceSc.getInstance();
 
         Scanner in = new Scanner(System.in);
 
@@ -28,46 +26,46 @@ public class Main {
         String oldPerson;
 
         while (flag) {
-            System.out.println("\n1. создание");
-            System.out.println("2. редактирования");
-            System.out.println("3. просмотра пользователей");
-            System.out.println("4. выход");
+            System.out.println("\n1. add user");
+            System.out.println("2. user editing");
+            System.out.println("3. viewing users");
+            System.out.println("4. exit");
 
-            System.out.print("Введите число: ");
+            System.out.print("enter a number: ");
             String num = in.next();
 
             switch (num) {
                 case ("1"):
-                    System.out.println("===Создание объекта===");
+                    System.out.println("===Creating a persona===");
 
-                    System.out.println("Введите имя:");
+                    System.out.println("Enter a name:");
                     name = input.name(in);
 
-                    System.out.println("Введите фамилию:");
+                    System.out.println("Enter your last name:");
                     last_name = input.lastName(in);
 
 
-                    System.out.println("Введите роли через пробел(USER, CUSTOMER, ADMIN, PROVIDER, SUPER_ADMIN):");
+                    System.out.println("Enter the roles separated by a space(USER, CUSTOMER, ADMIN, PROVIDER, SUPER_ADMIN):");
                     roleList = input.roles(in);
 
-                    System.out.println("Введите email:");
+                    System.out.println("Enter email:");
                     email = input.email(in);
 
-                    System.out.println("Введите номер телефона(ов):");
+                    System.out.println("Enter the phone number(s):");
                     phonesList = input.phones(in);
 
                     personService.add(new Person(name, last_name, email, roleList, phonesList));
                     break;
                 case ("2"):
                     personList = Transformation.getListPersons(personService.read());
-                    Transformation.indexedListOfPeople(personService.read());
+                    Transformation.indexedListOfPeople();
 
-                    System.out.println("Какой редактировать?");
+                    System.out.println("Enter the user's number");
                     person = input.indexPerson(personList, in);
 
                     System.out.println("=================");
                     System.out.println(person.toString());
-                    System.out.println("Какое поле редактировать?");
+                    System.out.println("Which field should I edit?");
                     System.out.println("1. name");
                     System.out.println("2. last_name");
                     System.out.println("3. roles");
@@ -77,7 +75,7 @@ public class Main {
                     int updateNumber = input.intBorder(1,6, in);
                     switch (updateNumber) {
                         case (1):
-                            System.out.println("Введите имя:");
+                            System.out.println("Enter name:");
                             String nameUpdate = input.name(in);
                             oldPerson = person.toString();
                             person.setName(nameUpdate);
@@ -85,7 +83,7 @@ public class Main {
                             personService.update(oldPerson, person.toString());
                             break;
                         case (2):
-                            System.out.println("Введите last_name:");
+                            System.out.println("Enter last_name:");
                             last_name = input.lastName(in);
                             oldPerson = person.toString();
                             person.setLast_name(last_name);
@@ -93,7 +91,7 @@ public class Main {
                             personService.update(oldPerson, person.toString());
                             break;
                         case (3):
-                            System.out.println("Введите роли через пробел(USER, CUSTOMER, ADMIN, PROVIDER, SUPER_ADMIN):");
+                            System.out.println("Enter the roles separated by a space(USER, CUSTOMER, ADMIN, PROVIDER, SUPER_ADMIN):");
                             roleList = input.roles(in);
                             oldPerson = person.toString();
                             person.setRole(roleList);
@@ -101,7 +99,7 @@ public class Main {
                             personService.update(oldPerson, person.toString());
                             break;
                         case (4):
-                            System.out.println("Введите email:");
+                            System.out.println("Enter email:");
                             email = input.email(in);
                             oldPerson = person.toString();
                             person.setEmail(email);
@@ -109,7 +107,7 @@ public class Main {
                             personService.update(oldPerson, person.toString());
                             break;
                         case (5):
-                            System.out.println("Введите номер телефона(ов):");
+                            System.out.println("Enter the phone number(s):");
                             phonesList = input.phones(in);
                             oldPerson = person.toString();
                             person.setPhoneNumbers(phonesList);
@@ -123,14 +121,14 @@ public class Main {
 
                     break;
                 case ("3"):
-                    Transformation.indexedListOfPeople(personService.read());
+                    Transformation.indexedListOfPeople();
                     break;
                 case ("4"):
                     flag = false;
                     break;
                 default:
                     System.out.println(num);
-                    System.out.println("неправильный выбор");
+                    System.out.println("wrong choice");
                     break;
             }
         }

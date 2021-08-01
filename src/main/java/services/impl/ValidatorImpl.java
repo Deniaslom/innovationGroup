@@ -29,24 +29,22 @@ public class ValidatorImpl implements Validation {
     public boolean checkRoles(String roles) {
         boolean validation = false;
         String[] rolesMassiv = roles.trim().split(" ");
-        System.out.println("roles: " + roles);
         List<Role> personRoles = new ArrayList<>();
         for (String role : rolesMassiv) {
             try {
-                System.out.println(role);
                 personRoles.add(Role.valueOf(role));
             } catch (IllegalArgumentException e) {
-                System.out.println("Такой роли не существует");
+                System.out.println("There is no such role");
             }
 
         }
 
         if (personRoles.size() == 2) {
-            int sym = personRoles.get(0).getLevel() + personRoles.get(1).getLevel();
+            int sym = personRoles.stream().mapToInt(x -> x.getLevel()).sum();
             if (sym == 3) {
                 validation = true;
             } else {
-                System.out.println("сочетание таких ролей запрещено");
+                System.out.println("the combination of such roles is prohibited");
             }
         } else {
             if (personRoles.size() == 1) {

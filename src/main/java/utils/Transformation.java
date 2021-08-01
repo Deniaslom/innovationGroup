@@ -67,7 +67,7 @@ public class Transformation {
         return phonesList;
     }
 
-    public static void indexedListOfPeople(String persons){
+    public static void indexedListOfPeople(){
         PersonService personService = PersonService.getInstance();
         List<Person> personList = Transformation.getListPersons(personService.read());
         for(int i = 0; i < personList.size(); i++){
