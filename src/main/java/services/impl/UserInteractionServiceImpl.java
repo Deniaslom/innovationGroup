@@ -2,29 +2,30 @@ package services.impl;
 
 import beans.Person;
 import beans.Role;
-import services.interfaces.UserInteractionService;
-import services.interfaces.Validation;
+import services.UserInteractionService;
+import validators.PersonValidation;
 import utils.Transformation;
+import validators.impl.PersonValidatorImpl;
 
 import java.util.List;
 import java.util.Scanner;
 
-public class InputServiceScImpl implements UserInteractionService {
-    private Validation val = ValidatorImpl.getInstance();
+public class UserInteractionServiceImpl implements UserInteractionService {
+    private PersonValidation val = PersonValidatorImpl.getInstance();
 
-    private static volatile InputServiceScImpl instance;
+    private static volatile UserInteractionServiceImpl instance;
     private static final Object lock = new Object();
 
-    public static InputServiceScImpl getInstance() {
+    public static UserInteractionServiceImpl getInstance() {
         if (instance == null)
             synchronized (lock) {
                 if (instance == null)
-                    instance = new InputServiceScImpl();
+                    instance = new UserInteractionServiceImpl();
             }
         return instance;
     }
 
-    private InputServiceScImpl() {
+    private UserInteractionServiceImpl() {
     }
 
     public String name(Scanner sc){

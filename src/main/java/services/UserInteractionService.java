@@ -1,4 +1,4 @@
-package services.interfaces;
+package services;
 
 import beans.Person;
 import beans.Role;

@@ -1,7 +1,7 @@
-package services.impl;
+package dao.impl;
 
 import beans.Person;
-import services.interfaces.PersonDao;
+import dao.PersonDao;
 import org.apache.log4j.Logger;
 
 import java.io.FileReader;

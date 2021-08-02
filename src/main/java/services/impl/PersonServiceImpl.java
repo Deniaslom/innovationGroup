@@ -1,38 +1,42 @@
-package services;
+package services.impl;
 
 import beans.Person;
-import services.interfaces.PersonDao;
-import services.impl.TxtPersonDaoImpl;
+import dao.PersonDao;
+import dao.impl.TxtPersonDaoImpl;
+import services.PersonService;
 
-public class PersonService {
-    private PersonDao crudTxt = TxtPersonDaoImpl.getInstance();
+public class PersonServiceImpl implements PersonService {
+    private PersonDao personDao = TxtPersonDaoImpl.getInstance();
 
-    private static volatile PersonService instance;
+    private static volatile PersonServiceImpl instance;
     private static final Object lock = new Object();
 
-    public static PersonService getInstance() {
+    public static PersonServiceImpl getInstance() {
         if (instance == null)
             synchronized (lock) {
                 if (instance == null)
-                    instance = new PersonService();
+                    instance = new PersonServiceImpl();
             }
         return instance;
     }
 
-    private PersonService() {
+    private PersonServiceImpl() {
     }
-
+    @Override
     public void add(Person person){
-        crudTxt.create(person);
+        personDao.create(person);
     }
+    @Override
     public void update(String person, String newPerson){
-        crudTxt.update(person, newPerson);
+        personDao.update(person, newPerson);
     }
+    @Override
     public void delete(Person person){
-        crudTxt.delete(person.toString());
+        personDao.delete(person.toString());
     }
+    @Override
     public String read(){
-        return crudTxt.read();
+        return personDao.read();
     }
 
 

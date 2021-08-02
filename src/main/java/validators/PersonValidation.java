@@ -1,4 +1,4 @@
-package services.interfaces;
+package validators;
 
 public interface PersonValidation {
     boolean checkName(String name);

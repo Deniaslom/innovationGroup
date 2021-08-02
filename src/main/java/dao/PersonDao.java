@@ -1,4 +1,4 @@
-package services.interfaces;
+package dao;
 
 import beans.Person;
 

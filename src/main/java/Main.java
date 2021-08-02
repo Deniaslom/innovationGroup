@@ -1,7 +1,7 @@
 import beans.Person;
 import beans.Role;
-import services.InputServiceSc;
-import services.PersonService;
+import services.impl.UserInteractionServiceImpl;
+import services.impl.PersonServiceImpl;
 import utils.Transformation;
 
 import java.util.List;
@@ -9,8 +9,8 @@ import java.util.Scanner;
 
 public class Main {
     public static void main(String[] args) {
-        PersonService personService = PersonService.getInstance();
-        InputServiceSc input = InputServiceSc.getInstance();
+        PersonServiceImpl personService = PersonServiceImpl.getInstance();
+        UserInteractionServiceImpl input = UserInteractionServiceImpl.getInstance();
 
         Scanner in = new Scanner(System.in);
 

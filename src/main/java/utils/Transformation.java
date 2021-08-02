@@ -2,25 +2,14 @@ package utils;
 
 import beans.Person;
 import beans.Role;
-import services.PersonService;
+import services.impl.PersonServiceImpl;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Scanner;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 public class Transformation {
-
-
-    public static List<String> listPhones(String phones){
-        List<String> phoneList = new ArrayList<>();
-        String[] strings = phones.split(" ");
-        for(String s : strings){
-            phoneList.add(s);
-        }
-        return phoneList;
-    }
 
     public static List<Person> getListPersons(String stringPersons){
         List<Person> persons = new ArrayList<>();
@@ -35,8 +24,6 @@ public class Transformation {
             person.setPhoneNumbers(getListPhones(personString));
             persons.add(person);
         }
-
-
 
         return persons;
     }
@@ -68,7 +55,7 @@ public class Transformation {
     }
 
     public static void indexedListOfPeople(){
-        PersonService personService = PersonService.getInstance();
+        PersonServiceImpl personService = PersonServiceImpl.getInstance();
         List<Person> personList = Transformation.getListPersons(personService.read());
         for(int i = 0; i < personList.size(); i++){
             System.out.println(i + ". " + personList.get(i));

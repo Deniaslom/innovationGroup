@@ -1,7 +1,7 @@
-package services.impl;
+package validators.impl;
 
 import beans.Role;
-import services.interfaces.PersonValidation;
+import validators.PersonValidation;
 
 import java.util.ArrayList;
 import java.util.List;
