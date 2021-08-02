@@ -13,15 +13,12 @@ import java.util.List;
 
 public class TxtPersonDaoImpl implements PersonDao {
     private static volatile TxtPersonDaoImpl instance;
-    private static final Object lock = new Object();
     private static final Logger LOGGER = Logger.getLogger(TxtPersonDaoImpl.class);
 
     public static TxtPersonDaoImpl getInstance() {
         if (instance == null)
-            synchronized (lock) {
-                if (instance == null)
-                    instance = new TxtPersonDaoImpl();
-            }
+            instance = new TxtPersonDaoImpl();
+
         return instance;
     }
 

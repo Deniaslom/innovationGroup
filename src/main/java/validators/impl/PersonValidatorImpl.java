@@ -8,14 +8,11 @@ import java.util.List;
 
 public class PersonValidatorImpl implements PersonValidation {
     private static volatile PersonValidatorImpl instance;
-    private static final Object lock = new Object();
 
     public static PersonValidatorImpl getInstance() {
         if (instance == null)
-            synchronized (lock) {
-                if (instance == null)
-                    instance = new PersonValidatorImpl();
-            }
+            instance = new PersonValidatorImpl();
+
         return instance;
     }
 
@@ -68,7 +65,7 @@ public class PersonValidatorImpl implements PersonValidation {
                     validation = false;
                 }
             }
-        }else{
+        } else {
             validation = false;
         }
         return validation;

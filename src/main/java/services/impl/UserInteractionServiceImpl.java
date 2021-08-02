@@ -14,39 +14,36 @@ public class UserInteractionServiceImpl implements UserInteractionService {
     private PersonValidation val = PersonValidatorImpl.getInstance();
 
     private static volatile UserInteractionServiceImpl instance;
-    private static final Object lock = new Object();
 
     public static UserInteractionServiceImpl getInstance() {
         if (instance == null)
-            synchronized (lock) {
-                if (instance == null)
-                    instance = new UserInteractionServiceImpl();
-            }
+            instance = new UserInteractionServiceImpl();
+
         return instance;
     }
 
     private UserInteractionServiceImpl() {
     }
 
-    public String name(Scanner sc){
+    public String name(Scanner sc) {
         String name = sc.next();
-        while (!val.checkName(name)){
+        while (!val.checkName(name)) {
             System.out.println("Error - Enter a name in Latin with a capital letter");
-                        name = sc.next();
+            name = sc.next();
         }
         return name;
     }
 
-    public String lastName(Scanner sc){
+    public String lastName(Scanner sc) {
         String lastName = sc.next();
-        while (!val.checkName(lastName)){
+        while (!val.checkName(lastName)) {
             System.out.println("Error - Enter a last name in Latin with a capital letter");
             lastName = sc.next();
         }
         return lastName;
     }
 
-    public List<Role> roles(Scanner sc){
+    public List<Role> roles(Scanner sc) {
         String roles = sc.nextLine();
         while (!val.checkRoles(roles)) {
             System.out.println("Error - Enter roles separated by a space(USER, CUSTOMER, ADMIN, PROVIDER, SUPER_ADMIN):");
@@ -55,7 +52,7 @@ public class UserInteractionServiceImpl implements UserInteractionService {
         return Transformation.getListRole(roles);
     }
 
-    public String email(Scanner sc){
+    public String email(Scanner sc) {
         String email = sc.next();
         while (!val.checkEmail(email)) {
             System.out.println("Error - email in the form *****@*****.*");
@@ -64,7 +61,7 @@ public class UserInteractionServiceImpl implements UserInteractionService {
         return email;
     }
 
-    public List<String> phones(Scanner sc){
+    public List<String> phones(Scanner sc) {
         String phones = sc.nextLine();
         while (!val.checkPhoneNumbers(phones)) {
             System.out.println("Error - phones must be in the form 375 *****");
@@ -73,7 +70,7 @@ public class UserInteractionServiceImpl implements UserInteractionService {
         return Transformation.getListPhones(phones);
     }
 
-    public Person indexPerson(List<Person> personList, Scanner sc){
+    public Person indexPerson(List<Person> personList, Scanner sc) {
         int indexPerson = sc.nextInt();
         while (!(indexPerson < personList.size())) {
             System.out.println("Error - Invalid user number");
@@ -82,7 +79,7 @@ public class UserInteractionServiceImpl implements UserInteractionService {
         return personList.get(indexPerson);
     }
 
-    public int intBorder(int min, int max, Scanner sc){
+    public int intBorder(int min, int max, Scanner sc) {
         int updateNumber = sc.nextInt();
         while (updateNumber > max || updateNumber < min) {
             updateNumber = sc.nextInt();
