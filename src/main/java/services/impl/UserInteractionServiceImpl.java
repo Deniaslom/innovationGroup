@@ -3,7 +3,7 @@ package services.impl;
 import beans.Person;
 import beans.Role;
 import services.UserInteractionService;
-import validators.PersonValidation;
+import validators.PersonValidator;
 import utils.Transformation;
 import validators.impl.PersonValidatorImpl;
 
@@ -11,7 +11,7 @@ import java.util.List;
 import java.util.Scanner;
 
 public class UserInteractionServiceImpl implements UserInteractionService {
-    private PersonValidation val = PersonValidatorImpl.getInstance();
+    private PersonValidator val = PersonValidatorImpl.getInstance();
 
     private static volatile UserInteractionServiceImpl instance;
 

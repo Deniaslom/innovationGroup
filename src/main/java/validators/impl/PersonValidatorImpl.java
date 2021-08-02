@@ -1,12 +1,12 @@
 package validators.impl;
 
 import beans.Role;
-import validators.PersonValidation;
+import validators.PersonValidator;
 
 import java.util.ArrayList;
 import java.util.List;
 
-public class PersonValidatorImpl implements PersonValidation {
+public class PersonValidatorImpl implements PersonValidator {
     private static volatile PersonValidatorImpl instance;
 
     public static PersonValidatorImpl getInstance() {
