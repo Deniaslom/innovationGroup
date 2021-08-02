@@ -1,11 +1,11 @@
 package services;
 
 import beans.Person;
-import interfaces.PersonCrudTxt;
-import services.impl.PersonCrudTxtImpl;
+import services.interfaces.PersonDao;
+import services.impl.TxtPersonDaoImpl;
 
 public class PersonService {
-    private PersonCrudTxt crudTxt = PersonCrudTxtImpl.getInstance();
+    private PersonDao crudTxt = TxtPersonDaoImpl.getInstance();
 
     private static volatile PersonService instance;
     private static final Object lock = new Object();

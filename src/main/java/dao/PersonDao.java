@@ -1,8 +1,8 @@
-package interfaces;
+package services.interfaces;
 
 import beans.Person;
 
-public interface PersonCrudTxt {
+public interface PersonDao {
     void create(Person person);
     String read();
     void update(String str, String update);

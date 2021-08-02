@@ -1,25 +1,25 @@
 package services.impl;
 
 import beans.Role;
-import interfaces.Validation;
+import services.interfaces.PersonValidation;
 
 import java.util.ArrayList;
 import java.util.List;
 
-public class ValidatorImpl implements Validation {
-    private static volatile ValidatorImpl instance;
+public class PersonValidatorImpl implements PersonValidation {
+    private static volatile PersonValidatorImpl instance;
     private static final Object lock = new Object();
 
-    public static ValidatorImpl getInstance() {
+    public static PersonValidatorImpl getInstance() {
         if (instance == null)
             synchronized (lock) {
                 if (instance == null)
-                    instance = new ValidatorImpl();
+                    instance = new PersonValidatorImpl();
             }
         return instance;
     }
 
-    private ValidatorImpl() {
+    private PersonValidatorImpl() {
     }
 
     public boolean checkName(String name) {

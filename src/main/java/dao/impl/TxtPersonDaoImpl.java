@@ -1,7 +1,7 @@
 package services.impl;
 
 import beans.Person;
-import interfaces.PersonCrudTxt;
+import services.interfaces.PersonDao;
 import org.apache.log4j.Logger;
 
 import java.io.FileReader;
@@ -11,21 +11,21 @@ import java.nio.file.Files;
 import java.nio.file.Paths;
 import java.util.List;
 
-public class PersonCrudTxtImpl implements PersonCrudTxt {
-    private static volatile PersonCrudTxtImpl instance;
+public class TxtPersonDaoImpl implements PersonDao {
+    private static volatile TxtPersonDaoImpl instance;
     private static final Object lock = new Object();
-    private static final Logger LOGGER = Logger.getLogger(PersonCrudTxtImpl.class);
+    private static final Logger LOGGER = Logger.getLogger(TxtPersonDaoImpl.class);
 
-    public static PersonCrudTxtImpl getInstance() {
+    public static TxtPersonDaoImpl getInstance() {
         if (instance == null)
             synchronized (lock) {
                 if (instance == null)
-                    instance = new PersonCrudTxtImpl();
+                    instance = new TxtPersonDaoImpl();
             }
         return instance;
     }
 
-    private PersonCrudTxtImpl() {
+    private TxtPersonDaoImpl() {
     }
 
     @Override

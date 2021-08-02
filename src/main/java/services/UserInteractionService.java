@@ -1,4 +1,4 @@
-package interfaces;
+package services.interfaces;
 
 import beans.Person;
 import beans.Role;
@@ -6,7 +6,7 @@ import beans.Role;
 import java.util.List;
 import java.util.Scanner;
 
-public interface InputScannerSc {
+public interface UserInteractionService {
     String name(Scanner sc);
     String lastName(Scanner sc);
     List<Role> roles(Scanner sc);

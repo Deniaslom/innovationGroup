@@ -1,6 +1,6 @@
-package interfaces;
+package services.interfaces;
 
-public interface Validation {
+public interface PersonValidation {
     boolean checkName(String name);
     boolean checkRoles(String roles);
     boolean checkEmail(String email);
